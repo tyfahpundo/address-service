@@ -26,4 +26,10 @@ public class AddressServiceImpl implements AddressService{
         Address address = repo.findById(id).get();
         return new AddressResponse(address);
     }
+
+    @Override
+    public AddressResponse getByStreetName(String street) {
+        Address address = repo.findByStreet(street);
+        return new AddressResponse(address);
+    }
 }

@@ -24,4 +24,9 @@ public class AddressController {
         AddressResponse response = addressService.getById(id);
         return new ResponseEntity<>(response, HttpStatus.FOUND);
     }
+    @GetMapping("/getByStreetName/{street}")
+    public ResponseEntity<AddressResponse> getByStreetName(@PathVariable String street){
+        AddressResponse response = addressService.getByStreetName(street);
+        return new ResponseEntity<>(response, HttpStatus.FOUND);
+    }
 }

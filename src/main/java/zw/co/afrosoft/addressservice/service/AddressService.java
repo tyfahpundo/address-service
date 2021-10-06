@@ -7,4 +7,6 @@ public interface AddressService {
     AddressResponse createAddress(CreateAddressRequest createAddressRequest);
 
     AddressResponse getById(Long id);
+
+    AddressResponse getByStreetName(String street);
 }

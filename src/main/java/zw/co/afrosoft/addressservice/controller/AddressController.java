@@ -8,6 +8,8 @@ import zw.co.afrosoft.addressservice.domain.request.CreateAddressRequest;
 import zw.co.afrosoft.addressservice.domain.response.AddressResponse;
 import zw.co.afrosoft.addressservice.service.AddressService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/address")
 public class AddressController {
@@ -20,13 +22,17 @@ public class AddressController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
     @GetMapping("/getById/{id}")
-    public ResponseEntity<AddressResponse> getById(@PathVariable Long id){
-        AddressResponse response = addressService.getById(id);
-        return new ResponseEntity<>(response, HttpStatus.FOUND);
+    public AddressResponse getById(@PathVariable Long id){
+        return addressService.getById(id);
     }
     @GetMapping("/getByStreetName/{street}")
     public ResponseEntity<AddressResponse> getByStreetName(@PathVariable String street){
         AddressResponse response = addressService.getByStreetName(street);
         return new ResponseEntity<>(response, HttpStatus.FOUND);
+    }
+    @GetMapping("/getAll")
+    public ResponseEntity<List<AddressResponse>> getAll(){
+        List<AddressResponse> response = addressService.getAll();
+        return new ResponseEntity<>(response,HttpStatus.FOUND);
     }
 }

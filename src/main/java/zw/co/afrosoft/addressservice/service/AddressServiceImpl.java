@@ -7,6 +7,9 @@ import zw.co.afrosoft.addressservice.persistence.AddressRepository;
 import zw.co.afrosoft.addressservice.domain.request.CreateAddressRequest;
 import zw.co.afrosoft.addressservice.domain.response.AddressResponse;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class AddressServiceImpl implements AddressService{
     @Autowired
@@ -31,5 +34,15 @@ public class AddressServiceImpl implements AddressService{
     public AddressResponse getByStreetName(String street) {
         Address address = repo.findByStreet(street);
         return new AddressResponse(address);
+    }
+
+    @Override
+    public List<AddressResponse> getAll() {
+        List<Address> addressList = repo.findAll();
+        List<AddressResponse> responseList = new ArrayList<>();
+        addressList.stream()
+                .forEach(address -> responseList.add(new AddressResponse(address)));
+
+        return responseList;
     }
 }
